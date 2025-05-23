@@ -4,19 +4,19 @@ apiVersion: plugin.halo.run/v1alpha1
 kind: Plugin
 metadata:
   # The name defines how the plugin is invoked, A unique name
-  name: starter
+  name: themeToolBox
 spec:
   enabled: true
   requires: ">=2.20.0"
   author:
-    name: Halo
-    website: https://github.com/halo-dev
+    name: Handsome&Webjing
+    website: https://lik.cc
   logo: logo.png
-  homepage: https://github.com/halo-dev/plugin-starter#readme
-  repo: https://github.com/halo-dev/plugin-starter
-  issues: https://github.com/halo-dev/plugin-starter/issues
-  displayName: "插件快速开始模板"
-  description: "这是一个插件快速开始模板"
+  homepage: https://github.com/acanyo/plugin-themeToolbox#readme
+  repo: https://github.com/acanyo/plugin-themeToolbox
+  issues: https://github.com/acanyo/plugin-themeToolbox/issues
+  displayName: "主题增强工具箱"
+  description: "为主题开发者提供的主题增强工具箱，包含了主题开发所需的各种API，帮助开发者更高效地进行主题开发。"
   license:
     - name: "GPL-3.0"
-      url: "https://github.com/halo-dev/plugin-starter/blob/main/LICENSE"
+      url: "https://github.com/acanyo/plugin-themeToolbox/blob/main/LICENSE"
