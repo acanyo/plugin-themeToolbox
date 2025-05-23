@@ -49,7 +49,7 @@ cd path/to/plugin-starter
 
 执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件，更多文档可查阅：<https://docs.halo.run/developer-guide/plugin/basics/devtools>
 
-### 运行方式 2
+### 运行方式
 
 > 此方式需要使用源码运行 Halo
 
