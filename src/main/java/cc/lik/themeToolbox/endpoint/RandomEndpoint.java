@@ -43,12 +43,19 @@ public class RandomEndpoint implements CustomEndpoint {
                         .implementation(Post.class)
                 )
             )
-            .GET("/toolbox/link", this::randomLink, builder -> builder.operationId("Get random link")
+            .GET("/toolbox/link", this::randomLink, builder -> builder.operationId("Get random links")
                 .tag(tag)
                 .description("获取随机链接")
+                .parameter(
+                    parameterBuilder()
+                        .in(ParameterIn.QUERY)
+                        .name("count")
+                        .description("需要返回的随机链接数量，默认为1")
+                        .required(false)
+                )
                 .response(
                     responseBuilder()
-                        .implementation(Link.class)
+                        .implementationArray(Link.class)
                 )
             )
             .build();
@@ -64,8 +71,14 @@ public class RandomEndpoint implements CustomEndpoint {
     }
 
     Mono<ServerResponse> randomLink(ServerRequest request) {
-        return randomService.randomLink()
-            .flatMap(link -> ServerResponse.ok().bodyValue(link))
+        int count = request.queryParam("count")
+            .filter(s -> !s.trim().isEmpty())
+            .map(Integer::parseInt)
+            .orElse(1);
+        
+        return randomService.randomLink(count)
+            .collectList()
+            .flatMap(links -> ServerResponse.ok().bodyValue(links))
             .doOnError(error -> log.error("获取随机链接失败", error))
             .onErrorResume(error -> ServerResponse.badRequest()
                 .bodyValue("获取随机链接失败: " + error.getMessage()));
